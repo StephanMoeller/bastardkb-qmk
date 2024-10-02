@@ -73,8 +73,8 @@ LT(BOOT_LAYER, KC_Q),    KC_W,   _W(KC_R),      KC_P,     KC_B,                K
     ),
     [NUMBERS] = ROLLERCOLE_36(
         CLOSE_WIN,    ALT_TAB, __________, ALT_TAB_REV, LALT(KC_PSCR),          DK_DLR,       KC_7,       KC_8,       KC_9,   __________,
-       __________, __________,     KC_ESC,  STICKY_SHIFT,   KC_APP,             HAT,   _S(KC_4),   _C(KC_5),   _A(KC_6),   __________,
-       __________, __________, __________,  __________,     KC_DEL,           TILDE,       KC_1,       KC_2,      KC_3,    __________,
+       __________, __________,     KC_ESC,  STICKY_SHIFT,   KC_APP,           TILDE,   _S(KC_4),   _C(KC_5),   _A(KC_6),   __________,
+       __________, __________, __________,  __________,     KC_DEL,             HAT,       KC_1,       KC_2,      KC_3,    __________,
                                __________,  __________, __________,      __________, __________, __________
         ),
     [BS_LAYER] = ROLLERCOLE_36(
