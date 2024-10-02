@@ -1,0 +1,5 @@
+
+afgør om det skal være noget one shot eller layer hold til k og v
+afgør om enter kan være et andet sted eller om den sidder fast der. fx hvor esc er lige nu.
+sæt evt en masse enter på backspace
+kan tab være på double hold layer?
