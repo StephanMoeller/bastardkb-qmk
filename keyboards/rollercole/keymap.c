@@ -1,6 +1,5 @@
 
 #include "keymap_danish.h"
-#include "features/achordion.h"
 #include "timer.h"
 
 enum layers {
@@ -303,16 +302,11 @@ void matrix_scan_user(void) {
         key_timer = timer_read();                    // reset the timer
         repeat_interval = 50;
     }
-    achordion_task();
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
-    // Achordion
-    // Disabled until I take the time to ensure alt+ctrl on same side will always trigger the modse
-    // if (!process_achordion(keycode, record)) { return false; }
-
-    update_last_keycodes_and_check_tapped(keycode, record);
+        update_last_keycodes_and_check_tapped(keycode, record);
 
     if(!handle_alt_tab(keycode, record)){ return false; }
      switch (keycode) {

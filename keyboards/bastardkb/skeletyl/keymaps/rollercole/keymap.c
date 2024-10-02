@@ -2,12 +2,11 @@
 
 // Copyright 2023 zzeneg (@zzeneg)
 // SPDX-License-Identifier: GPL-2.0-or-later
-
 // Deploy:
 //        qmk compile -kb bigga -km zzeneg
 
-// qmk compile -kb bastardkb/skeletyl/v2/splinky_3  -km  rollercole
-// qmk flash -kb bastardkb/skeletyl/v2/splinky_3  -km  rollercole
+// qmk compile -kb bastardkb/skeletyl -km  rollercole
+// qmk flash -kb bastardkb/skeletyl -km  rollercole
 #include QMK_KEYBOARD_H
 
 #define __________ _______
@@ -19,4 +18,4 @@
                      _z,             _x,         _c,         _d,         _v,                   _k,         _h,      _comm,       _dot,      _min, \
                                                   _thumb1L,   _thumb2L,   _thumb3L,             _thumb3R,   _thumb2R,   _thumb1R    )
 
-#include "../../../rollercole/keymap.c"
+#include "../../rollercole/keymap.c"
