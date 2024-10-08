@@ -60,10 +60,10 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = ROLLERCOLE_36(
-LT(BOOT_LAYER, KC_Q),    KC_W,   _W(KC_R),      KC_P,     KC_B,                KC_K,       KC_L,   _W(KC_O), KC_U,LT(BOOT_LAYER,DK_SINGLE_QT),
+LT(BOOT_LAYER, KC_Q),LT(F_KEYS, KC_W),   _W(KC_R),      KC_P,     KC_B,                KC_K,       KC_L,   _W(KC_O), KC_U,LT(BOOT_LAYER,DK_SINGLE_QT),
         KC_F,        _A(KC_A),  _C(KC_S),  _S(KC_T),      KC_G,                KC_M,   _S(KC_N),   _C(KC_E),   _A(KC_I),             KC_Y,
         KC_Z,            KC_X,      KC_C,      KC_D,      KC_V,          __________,       KC_H,    DK_COMM,  LT(APP_LAUNCH, DK_DOT),  DK_MINS,
-                             MO(F_KEYS), THUMB_LEFT,THUMB_LEFT,          THUMB_RIGHT, THUMB_RIGHT, MO(F_KEYS)
+                             __________, THUMB_LEFT,THUMB_LEFT,          THUMB_RIGHT, THUMB_RIGHT, __________
     ),
  [ARROW] = ROLLERCOLE_36(
         DK_EXCLAM,    DK_LABK,  DK_EQUALS,    DK_RABK,    KC_PERC,              DK_SLASH,    KC_HOME,      KC_UP,      KC_END, DK_QSTMRK,
@@ -322,7 +322,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case KC_LEFT:
         case KC_RIGHT:
         case KC_W:
-        case KC_B:
             if (record->event.pressed)  {
                 key_held = true;
                 repeat_interval = 100;
@@ -423,7 +422,6 @@ bool achordion_eager_mod(uint8_t mod) {
       return false;
   }
 }
-
 
 const uint16_t PROGMEM combo_j[] = { KC_W, _W(KC_R), COMBO_END};
 const uint16_t PROGMEM combo_sc2_on[] = { LT(BOOT_LAYER, KC_Q), LT(BOOT_LAYER,DK_SINGLE_QT), COMBO_END};
