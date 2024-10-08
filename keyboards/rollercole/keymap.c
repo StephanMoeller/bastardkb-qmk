@@ -60,8 +60,8 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = ROLLERCOLE_36(
-LT(BOOT_LAYER, KC_Q),    KC_W,   _W(KC_R),      KC_P,     KC_B,                KC_K,       KC_L,   _W(KC_U), KC_Y,LT(BOOT_LAYER,DK_SINGLE_QT),
-        KC_F,        _A(KC_A),  _C(KC_S),  _S(KC_T),      KC_G,                KC_M,   _S(KC_N),   _C(KC_E),   _A(KC_I),             KC_O,
+LT(BOOT_LAYER, KC_Q),    KC_W,   _W(KC_R),      KC_P,     KC_B,                KC_K,       KC_L,   _W(KC_O), KC_U,LT(BOOT_LAYER,DK_SINGLE_QT),
+        KC_F,        _A(KC_A),  _C(KC_S),  _S(KC_T),      KC_G,                KC_M,   _S(KC_N),   _C(KC_E),   _A(KC_I),             KC_Y,
         KC_Z,            KC_X,      KC_C,      KC_D,      KC_V,          __________,       KC_H,    DK_COMM,  LT(APP_LAUNCH, DK_DOT),  DK_MINS,
                               MO(F_KEYS),THUMB_LEFT,MO(F_KEYS),          MO(F_KEYS),THUMB_RIGHT,  MO(F_KEYS)
     ),
@@ -425,9 +425,9 @@ bool achordion_eager_mod(uint8_t mod) {
 
 const uint16_t PROGMEM combo_j[] = { KC_W, _W(KC_R), COMBO_END};
 const uint16_t PROGMEM combo_sc2_on[] = { LT(BOOT_LAYER, KC_Q), LT(BOOT_LAYER,DK_SINGLE_QT), COMBO_END};
-const uint16_t PROGMEM combo_lo[] = { KC_L, _W(KC_U), COMBO_END};
-const uint16_t PROGMEM combo_ou[] = { _W(KC_U), KC_Y, COMBO_END};
-const uint16_t PROGMEM combo_lu[] = { KC_L, KC_Y, COMBO_END};
+const uint16_t PROGMEM combo_lo[] = { KC_L, _W(KC_O), COMBO_END};
+const uint16_t PROGMEM combo_ou[] = { _W(KC_O), KC_U, COMBO_END};
+const uint16_t PROGMEM combo_lu[] = { KC_L, KC_U, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(combo_j, KC_J),
