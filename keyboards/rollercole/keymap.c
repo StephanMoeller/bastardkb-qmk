@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 LT(BOOT_LAYER, KC_Q),    KC_W,   _W(KC_R),      KC_P,     KC_B,                KC_K,       KC_L,   _W(KC_O), KC_U,LT(BOOT_LAYER,DK_SINGLE_QT),
         KC_F,        _A(KC_A),  _C(KC_S),  _S(KC_T),      KC_G,                KC_M,   _S(KC_N),   _C(KC_E),   _A(KC_I),             KC_Y,
         KC_Z,            KC_X,      KC_C,      KC_D,      KC_V,          __________,       KC_H,    DK_COMM,  LT(APP_LAUNCH, DK_DOT),  DK_MINS,
-                             MO(F_KEYS), THUMB_LEFT,THUMB_LEFT,          THUMB_RIGHT, THUMB_RIGHT, MO(F_KEYS)
+                              MO(F_KEYS),THUMB_LEFT,MO(F_KEYS),          MO(F_KEYS),THUMB_RIGHT,  MO(F_KEYS)
     ),
  [ARROW] = ROLLERCOLE_36(
         DK_EXCLAM,    DK_LABK,  DK_EQUALS,    DK_RABK,    KC_PERC,              DK_SLASH,    KC_HOME,      KC_UP,      KC_END, DK_QSTMRK,
