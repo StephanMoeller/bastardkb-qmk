@@ -350,7 +350,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
              if(tap_detected){
                 if(keycode == THUMB_LEFT && right_down){ tap_code(KC_SPACE); }
-                if(keycode == THUMB_LEFT && !right_down){ tap_code(KC_ENTER); }
+                if(keycode == THUMB_LEFT && !right_down){
+                    //tap_code(KC_ENTER);
+                }
                 if(keycode == THUMB_RIGHT && !left_down){ tap_code(KC_SPACE); }
                 if(keycode == THUMB_RIGHT && left_down){
                     if(sticky_shift_on){
@@ -428,11 +430,15 @@ const uint16_t PROGMEM combo_sc2_on[] = { LT(BOOT_LAYER, KC_Q), LT(BOOT_LAYER,DK
 const uint16_t PROGMEM combo_lo[] = { KC_L, _W(KC_O), COMBO_END};
 const uint16_t PROGMEM combo_ou[] = { _W(KC_O), KC_U, COMBO_END};
 const uint16_t PROGMEM combo_lu[] = { KC_L, KC_U, COMBO_END};
+const uint16_t PROGMEM combo_index[] = { _S(KC_T), _S(KC_N), COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(combo_j, KC_J),
     COMBO(combo_sc2_on, SC2_ON),
     COMBO(combo_lo, DK_AE),
     COMBO(combo_ou, DK_AA),
-    COMBO(combo_lu, DK_OE)
+    COMBO(combo_lu, DK_OE),
+    COMBO(combo_index, KC_ENTER)
 };
+
+
