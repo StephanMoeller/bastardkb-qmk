@@ -34,7 +34,9 @@ enum custom_keycodes {
     HAT,
     STICKY_SHIFT,
     NUMBERS_UP,
-    NUMBERS_DOWN
+    NUMBERS_DOWN,
+    SC2_ON,
+    SC2_OFF
 };
 #define _S(kc) MT(MOD_LSFT, kc)
 #define _A(kc) MT(MOD_LALT, kc)
@@ -71,7 +73,7 @@ LT(BOOT_LAYER, KC_Q),    KC_W,   _W(KC_R),      KC_P,     KC_B,                K
     ),
     [NUMBERS] = ROLLERCOLE_36(
         CLOSE_WIN,    ALT_TAB, __________, ALT_TAB_REV, LALT(KC_PSCR),          DK_DLR,       KC_7,       KC_8,       KC_9,   __________,
-       __________, __________, __________,  STICKY_SHIFT,   KC_APP,           TILDE,   _S(KC_4),   _C(KC_5),   _A(KC_6),   __________,
+       __________, __________,     KC_ESC,  STICKY_SHIFT,   KC_APP,           TILDE,   _S(KC_4),   _C(KC_5),   _A(KC_6),   __________,
        __________, __________, __________,  __________,     KC_DEL,             HAT,       KC_1,       KC_2,      KC_3,    __________,
                                __________,  __________, __________,      __________, __________, __________
         ),
@@ -114,13 +116,13 @@ LT(BOOT_LAYER, KC_Q),    KC_W,   _W(KC_R),      KC_P,     KC_B,                K
 // auto-make stutter move
 
     [SC2_MAIN] = ROLLERCOLE_36(
-         KC_1,       KC_2,       KC_3,       KC_4,       KC_5,                 __________, __________, __________, __________, __________,
+         KC_1,       KC_2,       KC_3,       KC_4,       KC_5,                 __________, __________, __________, __________,    SC2_OFF,
      _C(KC_F),       KC_A,       KC_S,      _S(KC_T),       KC_G,                 __________, __________, __________, __________, __________,
      _C(KC_Z),       KC_X,        KC_C,       KC_D,       KC_V,                 __________, __________, __________, __________, __________,
                            LCTL(KC_F1), _S(KC_SPACE), KC_F2,           __________, __________, __________
     ),
     [SC2_LETTERS] = ROLLERCOLE_36(
-       __________, LSFT(KC_2),   LSFT(KC_3),      LSFT(KC_4),      LSFT(KC_5),                 __________, __________, __________, __________, __________,
+       __________, LSFT(KC_2),   LSFT(KC_3),      LSFT(KC_4),      LSFT(KC_5),                 __________, __________, __________, __________,    SC2_OFF,
        __________,  __________,     KC_ESC, __________, __________,                 __________, __________, __________, __________, __________,
        __________,  __________, __________, __________, __________,                 __________, __________, __________, __________, __________,
                                 __________, __________, __________,           __________, __________, __________
@@ -401,6 +403,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 tap_code(KC_SPACE);
             }
             return false;
+        case SC2_ON:
+            set_layer_state(SC2_MAIN, true);
+            return false;
+        case SC2_OFF:
+            set_layer_state(SC2_MAIN, false);
+            set_layer_state(SC2_LETTERS, false);
+            return false;
     }
 
     return true;
@@ -417,26 +426,19 @@ bool achordion_eager_mod(uint8_t mod) {
 }
 
 const uint16_t PROGMEM combo_j[] = { KC_W, _W(KC_R), COMBO_END};
+const uint16_t PROGMEM combo_sc2_on[] = { LT(BOOT_LAYER, KC_Q), LT(BOOT_LAYER,DK_SINGLE_QT), COMBO_END};
 const uint16_t PROGMEM combo_lo[] = { KC_L, _W(KC_O), COMBO_END};
 const uint16_t PROGMEM combo_ou[] = { _W(KC_O), KC_U, COMBO_END};
 const uint16_t PROGMEM combo_lu[] = { KC_L, KC_U, COMBO_END};
 const uint16_t PROGMEM combo_index[] = { _S(KC_T), _S(KC_N), COMBO_END};
-const uint16_t PROGMEM combo_index_arrow_layer[] = { SFT_PAR_2, KC_LEFT, COMBO_END};
-
-const uint16_t PROGMEM combo_ring[] = { _C(KC_S), _C(KC_E), COMBO_END};
-const uint16_t PROGMEM combo_ring_arrow_layer[] = { CTL_PAR_1, KC_DOWN, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(combo_j, KC_J),
+    COMBO(combo_sc2_on, SC2_ON),
     COMBO(combo_lo, DK_AE),
     COMBO(combo_ou, DK_AA),
     COMBO(combo_lu, DK_OE),
-
-    COMBO(combo_index, KC_ENTER),
-    COMBO(combo_index_arrow_layer, KC_ENTER),
-
-    COMBO(combo_ring, KC_ESC),
-    COMBO(combo_ring_arrow_layer, KC_ESC)
+    COMBO(combo_index, KC_ENTER)
 };
 
 
