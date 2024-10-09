@@ -65,8 +65,8 @@ LT(BOOT_LAYER, KC_Q),    KC_W,   _W(KC_R),      KC_P,     KC_B,                K
     ),
  [ARROW] = ROLLERCOLE_36(
         DK_EXCLAM,    DK_LABK,  DK_EQUALS,    DK_RABK,    KC_PERC,              DK_SLASH,    KC_HOME,      KC_UP,      KC_END, DK_QSTMRK,
-       RALT(KC_2),      TUB_1,  CTL_PAR_1,  SFT_PAR_2,      TUB_2,               KC_TAB,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   __________,
-    RALT(DK_LABK), LSFT(KC_3),   DK_LBRAC,   DK_RBRAC,    DK_AMPR,               DK_PIPE,     KC_ENTER,   DK_DOUBLE_QT,   DK_COLON,   DK_PLUS,
+       RALT(KC_2),      TUB_1,  CTL_PAR_1,  SFT_PAR_2,      TUB_2,               KC_ENTER,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_ESC,
+    RALT(DK_LABK), LSFT(KC_3),   DK_LBRAC,   DK_RBRAC,    DK_AMPR,               DK_PIPE,     KC_TAB,   DK_DOUBLE_QT,   DK_COLON,   DK_PLUS,
                                __________, __________, __________,            __________, __________, __________
     ),
     [NUMBERS] = ROLLERCOLE_36(
@@ -348,7 +348,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
              if(tap_detected){
                 if(keycode == THUMB_LEFT && right_down){ tap_code(KC_SPACE); }
-                if(keycode == THUMB_LEFT && !right_down){ tap_code(KC_ESC); }
+                if(keycode == THUMB_LEFT && !right_down){
+                    //tap_code(KC_ENTER);
+                }
                 if(keycode == THUMB_RIGHT && !left_down){ tap_code(KC_SPACE); }
                 if(keycode == THUMB_RIGHT && left_down){
                     if(sticky_shift_on){
