@@ -97,9 +97,9 @@ LT(TMUX, KC_Q),    KC_W,   _W(KC_R),      KC_P,     KC_B,                KC_K,  
                                __________, __________, __________,           __________, __________, __________
     ),
     [TMUX] = ROLLERCOLE_36(
-       TMUX_WIN_KILL, __________, __________, __________, __________,           __________,    __________, __________, __________,    __________,
-       __________, __________, __________, __________, __________,           TMUX_SES_PREV, TMUX_WIN_PREV, __________, TMUX_WIN_NEXT, TMUX_SES_NEXT,
-       __________, __________, __________, __________, __________,           __________,    __________, __________, __________,    __________,
+          DK_AMPR, __________, __________, __________, __________,        __________,    __________, __________, __________,    __________,
+       __________, __________, __________, __________, __________,           __________,          KC_P, __________,       KC_N,    __________,
+       __________, __________, KC_C, __________, __________,           __________,    __________, __________, __________,    __________,
                                     QK_BOOT,  QK_BOOT,    QK_BOOT,              QK_BOOT,    QK_BOOT,    QK_BOOT
 
     )
@@ -280,19 +280,18 @@ void matrix_scan_user(void) {
     }
 }
 
-void tmux_action(uint16_t keycode)
-{
-    ensure_pressed(KC_RCTL);
-    tap_code(KC_B);
-    ensure_released(KC_RCTL);
-    tap_code(keycode);
-}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
         update_last_keycodes_and_check_tapped(keycode, record);
 
     if(!handle_alt_tab(keycode, record)){ return false; }
+    if(IS_LAYER_ON(TMUX) && record->event.pressed)
+    {
+        ensure_pressed(KC_RCTL);
+        tap_code(KC_B);
+        ensure_released(KC_RCTL);
+    }
      switch (keycode) {
          case STICKY_SHIFT:
             if(tap_detected){
@@ -384,12 +383,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 tap_code(KC_SPACE);
             }
             return false;
-
-        case TMUX_SES_PREV: if(record->event.pressed)tmux_action(KC_N); return false;
-        case TMUX_WIN_PREV: if(record->event.pressed)tmux_action(KC_P); return false;
-        case TMUX_WIN_NEXT: if(record->event.pressed)tmux_action(KC_N); return false;
-        case TMUX_SES_NEXT: if(record->event.pressed)tmux_action(KC_N); return false;
-        case TMUX_WIN_KILL: if(record->event.pressed)tmux_action(DK_AMPR); return false;
     }
 
     return true;
