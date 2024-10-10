@@ -8,10 +8,8 @@ enum layers {
     NUMBERS,
     F_KEYS,
     BS_LAYER,  // Backspace
-    BOOT_LAYER,
     APP_LAUNCH,
-    SC2_MAIN,
-    SC2_LETTERS
+    TMUX
 };
 
 // httes:/s/docs.qmk.fm/#/faq_keymap
@@ -35,8 +33,11 @@ enum custom_keycodes {
     STICKY_SHIFT,
     NUMBERS_UP,
     NUMBERS_DOWN,
-    SC2_ON,
-    SC2_OFF
+    TMUX_WIN_NEXT,
+    TMUX_WIN_PREV,
+    TMUX_WIN_KILL,
+    TMUX_SES_NEXT,
+    TMUX_SES_PREV
 };
 #define _S(kc) MT(MOD_LSFT, kc)
 #define _A(kc) MT(MOD_LALT, kc)
@@ -60,10 +61,10 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = ROLLERCOLE_36(
-LT(BOOT_LAYER, KC_Q),    KC_W,   _W(KC_R),      KC_P,     KC_B,                KC_K,       KC_L,   _W(KC_O), KC_U,LT(BOOT_LAYER,DK_SINGLE_QT),
+LT(TMUX, KC_Q),    KC_W,   _W(KC_R),      KC_P,     KC_B,                KC_K,       KC_L,   _W(KC_O), KC_U,LT(TMUX,DK_SINGLE_QT),
         KC_F,        _A(KC_A),  _C(KC_S),  _S(KC_T),      KC_G,                KC_M,   _S(KC_N),   _C(KC_E),   _A(KC_I),             KC_Y,
         KC_Z,            KC_X,      KC_C,      KC_D,      KC_V,          __________,       KC_H,    DK_COMM,  LT(APP_LAUNCH, DK_DOT),  DK_MINS,
-                              MO(F_KEYS),THUMB_LEFT,MO(F_KEYS),          MO(F_KEYS),THUMB_RIGHT,  MO(F_KEYS)
+                              MO(F_KEYS),THUMB_LEFT,__________,          __________,THUMB_RIGHT,  MO(F_KEYS)
     ),
  [ARROW] = ROLLERCOLE_36(
         DK_EXCLAM,    DK_LABK,  DK_EQUALS,    DK_RABK,    KC_PERC,              DK_SLASH,    KC_HOME,      KC_UP,      KC_END, DK_QSTMRK,
@@ -89,43 +90,18 @@ LT(BOOT_LAYER, KC_Q),    KC_W,   _W(KC_R),      KC_P,     KC_B,                K
        __________, __________, __________, __________, __________,          __________,  _W(KC_F1),      KC_F2,      KC_F3,     KC_F12,
                                __________, __________, __________,            __________, __________, __________
     ),
-    [BOOT_LAYER] = ROLLERCOLE_36(
-       __________, __________, __________, __________, __________,           __________, __________, __________, __________, __________,
-       __________, __________, __________, __________, __________,           __________, __________, __________, __________, __________,
-       __________, __________, __________, __________, __________,           __________, __________, __________, __________, __________,
-                                    QK_BOOT,  QK_BOOT,    QK_BOOT,              QK_BOOT,    QK_BOOT,    QK_BOOT
-    ),
     [APP_LAUNCH] = ROLLERCOLE_36(
        LGUI(KC_7), __________, LGUI(KC_1), LGUI(KC_6), __________,           __________, __________, __________, __________, __________,
        LGUI(KC_4), __________, LGUI(KC_2), LGUI(KC_5), __________,           __________, __________, __________, __________, __________,
        __________, __________, LGUI(KC_3), LGUI(KC_8), __________,           __________, __________, __________, __________, __________,
                                __________, __________, __________,           __________, __________, __________
     ),
+    [TMUX] = ROLLERCOLE_36(
+       TMUX_WIN_KILL, __________, __________, __________, __________,           __________,    __________, __________, __________,    __________,
+       __________, __________, __________, __________, __________,           TMUX_SES_PREV, TMUX_WIN_PREV, __________, TMUX_WIN_NEXT, TMUX_SES_NEXT,
+       __________, __________, __________, __________, __________,           __________,    __________, __________, __________,    __________,
+                                    QK_BOOT,  QK_BOOT,    QK_BOOT,              QK_BOOT,    QK_BOOT,    QK_BOOT
 
-// add right click to middle button
-// Jump (space) => f
-// attack => a
-// ?? => s
-// patrol => hold thumb + p
-// drop => d
-
-// scv: build primary => ??
-// scv: build advanced => ??
-
-// thumb + number => ctrl + number
-// auto-make stutter move
-
-    [SC2_MAIN] = ROLLERCOLE_36(
-         KC_1,       KC_2,       KC_3,       KC_4,       KC_5,                 __________, __________, __________, __________,    SC2_OFF,
-     _C(KC_F),       KC_A,       KC_S,      _S(KC_T),       KC_G,                 __________, __________, __________, __________, __________,
-     _C(KC_Z),       KC_X,        KC_C,       KC_D,       KC_V,                 __________, __________, __________, __________, __________,
-                           LCTL(KC_F1), _S(KC_SPACE), KC_F2,           __________, __________, __________
-    ),
-    [SC2_LETTERS] = ROLLERCOLE_36(
-       __________, LSFT(KC_2),   LSFT(KC_3),      LSFT(KC_4),      LSFT(KC_5),                 __________, __________, __________, __________,    SC2_OFF,
-       __________,  __________,     KC_ESC, __________, __________,                 __________, __________, __________, __________, __________,
-       __________,  __________, __________, __________, __________,                 __________, __________, __________, __________, __________,
-                                __________, __________, __________,           __________, __________, __________
     )
 };
 
@@ -304,6 +280,14 @@ void matrix_scan_user(void) {
     }
 }
 
+void tmux_action(uint16_t keycode)
+{
+    ensure_pressed(KC_RCTL);
+    tap_code(KC_B);
+    ensure_released(KC_RCTL);
+    tap_code(keycode);
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
         update_last_keycodes_and_check_tapped(keycode, record);
@@ -400,17 +384,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 tap_code(KC_SPACE);
             }
             return false;
-        case SC2_ON:
-            set_layer_state(SC2_MAIN, true);
-            return false;
-        case SC2_OFF:
-            set_layer_state(SC2_MAIN, false);
-            set_layer_state(SC2_LETTERS, false);
-            return false;
+
+        case TMUX_SES_PREV: if(record->event.pressed)tmux_action(KC_N); return false;
+        case TMUX_WIN_PREV: if(record->event.pressed)tmux_action(KC_P); return false;
+        case TMUX_WIN_NEXT: if(record->event.pressed)tmux_action(KC_N); return false;
+        case TMUX_SES_NEXT: if(record->event.pressed)tmux_action(KC_N); return false;
+        case TMUX_WIN_KILL: if(record->event.pressed)tmux_action(DK_AMPR); return false;
     }
 
     return true;
 }
+
 
 // Achordion
 bool achordion_eager_mod(uint8_t mod) {
@@ -423,14 +407,12 @@ bool achordion_eager_mod(uint8_t mod) {
 }
 
 const uint16_t PROGMEM combo_j[] = { KC_W, _W(KC_R), COMBO_END};
-const uint16_t PROGMEM combo_sc2_on[] = { LT(BOOT_LAYER, KC_Q), LT(BOOT_LAYER,DK_SINGLE_QT), COMBO_END};
 const uint16_t PROGMEM combo_lo[] = { KC_L, _W(KC_O), COMBO_END};
 const uint16_t PROGMEM combo_ou[] = { _W(KC_O), KC_U, COMBO_END};
 const uint16_t PROGMEM combo_lu[] = { KC_L, KC_U, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(combo_j, KC_J),
-    COMBO(combo_sc2_on, SC2_ON),
     COMBO(combo_lo, DK_AE),
     COMBO(combo_ou, DK_AA),
     COMBO(combo_lu, DK_OE)
