@@ -33,11 +33,7 @@ enum custom_keycodes {
     STICKY_SHIFT,
     NUMBERS_UP,
     NUMBERS_DOWN,
-    TMUX_WIN_NEXT,
-    TMUX_WIN_PREV,
-    TMUX_WIN_KILL,
-    TMUX_SES_NEXT,
-    TMUX_SES_PREV
+    SEQ_Q_U
 };
 #define _S(kc) MT(MOD_LSFT, kc)
 #define _A(kc) MT(MOD_LALT, kc)
@@ -61,9 +57,9 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = ROLLERCOLE_36(
-LT(TMUX, KC_Q),    KC_W,   _W(KC_R),      KC_P,     KC_B,                KC_K,       KC_L,   _W(KC_O), KC_U,LT(TMUX,DK_SINGLE_QT),
+    MO(TMUX),    KC_W,   _W(KC_R),      KC_P,     KC_B,                KC_K,       KC_L,   _W(KC_O), KC_U,LT(TMUX,DK_SINGLE_QT),
         KC_F,        _A(KC_A),  _C(KC_S),  _S(KC_T),      KC_G,                KC_M,   _S(KC_N),   _C(KC_E),   _A(KC_I),             KC_Y,
-        KC_Z,            KC_X,      KC_C,      KC_D,      KC_V,          __________,       KC_H,    DK_COMM,  LT(APP_LAUNCH, DK_DOT),  DK_MINS,
+        KC_Z,            KC_X,      KC_C,      KC_D,__________,          __________,       KC_H,    DK_COMM,  LT(APP_LAUNCH, DK_DOT),  DK_MINS,
                               MO(F_KEYS),THUMB_LEFT,__________,          __________,THUMB_RIGHT,  MO(F_KEYS)
     ),
  [ARROW] = ROLLERCOLE_36(
@@ -383,6 +379,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 tap_code(KC_SPACE);
             }
             return false;
+        case SEQ_Q_U:
+            if (record->event.pressed == true)
+            {
+                tap_code(KC_Q);
+                tap_code(KC_U);
+            }
+            return false;
     }
 
     return true;
@@ -399,13 +402,17 @@ bool achordion_eager_mod(uint8_t mod) {
   }
 }
 
-const uint16_t PROGMEM combo_j[] = { KC_W, _W(KC_R), COMBO_END};
+const uint16_t PROGMEM combo_wr[] = { KC_W, _W(KC_R), COMBO_END};
+const uint16_t PROGMEM combo_rp[] = { _W(KC_R), KC_P, COMBO_END};
 const uint16_t PROGMEM combo_lo[] = { KC_L, _W(KC_O), COMBO_END};
 const uint16_t PROGMEM combo_ou[] = { _W(KC_O), KC_U, COMBO_END};
 const uint16_t PROGMEM combo_lu[] = { KC_L, KC_U, COMBO_END};
+const uint16_t PROGMEM combo_cd[] = { KC_C, KC_D, COMBO_END};
 
 combo_t key_combos[] = {
-    COMBO(combo_j, KC_J),
+    COMBO(combo_cd, SEQ_Q_U),
+    COMBO(combo_wr, KC_V),
+    COMBO(combo_rp, KC_J),
     COMBO(combo_lo, DK_AE),
     COMBO(combo_ou, DK_AA),
     COMBO(combo_lu, DK_OE)
