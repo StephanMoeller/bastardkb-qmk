@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        LT(BOOT, KC_Q),    KC_W,   _W(KC_R),      KC_P,     KC_B,                KC_K,         KC_L,   _W(KC_O), KC_U,LT(BOOT,DK_SINGLE_QT),
         KC_F,        _A(KC_A),  _C(KC_S),  _S(KC_T),       KC_G,                KC_M,     _S(KC_N),   _C(KC_E),   _A(KC_I),             KC_Y,
         KC_Z,            KC_X,      KC_C,LT(TMUX,KC_D),    KC_V,          __________,LT(TMUX,KC_H),    DK_COMM,  LT(APP_LAUNCH, DK_DOT),  DK_MINS,
-     LT(F_KEYS,QK_MOUSE_BUTTON_2),THUMB_LEFT, QK_MOUSE_BUTTON_2,          MO(TMUX),THUMB_RIGHT,  MO(F_KEYS)
+     MO(F_KEYS),THUMB_LEFT, __________,          __________,THUMB_RIGHT,  MO(F_KEYS)
     ),
  [ARROW] = ROLLERCOLE_36(
         DK_EXCLAM,    DK_LABK,  DK_EQUALS,    DK_RABK,    KC_PERC,              DK_SLASH,    KC_HOME,      KC_UP,      KC_END, DK_QSTMRK,
@@ -71,8 +71,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [NUMBERS] = ROLLERCOLE_36(
         CLOSE_WIN,    ALT_TAB, __________, ALT_TAB_REV, LALT(KC_PSCR),          DK_DLR,       KC_7,       KC_8,       KC_9,   __________,
-       __________, __________,     KC_ESC,  STICKY_SHIFT,   KC_APP,           TILDE,   _S(KC_4),   _C(KC_5),   _A(KC_6),   __________,
-       __________, __________, __________,  __________,     KC_DEL,             HAT,       KC_1,       KC_2,      KC_3,    __________,
+       __________, __________, _C(KC_ESC),  QK_MOUSE_BUTTON_2,   KC_APP,           TILDE,   _S(KC_4),   _C(KC_5),   _A(KC_6),   __________,
+       __________, __________, __________,  STICKY_SHIFT, KC_DEL,             HAT,       KC_1,       KC_2,      KC_3,    __________,
                                __________,  __________, __________,      __________, __________, __________
         ),
     [BS_LAYER] = ROLLERCOLE_36(
