@@ -55,6 +55,8 @@ enum custom_keycodes {
 #define DK_SLASH LSFT(KC_7)
 #define KC_DEL KC_DELETE
 #define DK_COLON LSFT(DK_DOT)
+#define MOUSE_1 QK_MOUSE_BUTTON_1
+#define MOUSE_2 QK_MOUSE_BUTTON_2
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = ROLLERCOLE_36(
@@ -70,9 +72,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                __________, __________, __________,            __________, __________, __________
     ),
     [NUMBERS] = ROLLERCOLE_36(
-        CLOSE_WIN,    ALT_TAB, __________, ALT_TAB_REV, LALT(KC_PSCR),          DK_DLR,       KC_7,       KC_8,       KC_9,   __________,
-       __________, __________, _C(KC_ESC),  QK_MOUSE_BUTTON_2,   KC_APP,           TILDE,   _S(KC_4),   _C(KC_5),   _A(KC_6),   __________,
-       __________, __________, __________,  STICKY_SHIFT, KC_DEL,             HAT,       KC_1,       KC_2,      KC_3,    __________,
+        CLOSE_WIN,    ALT_TAB, __________, ALT_TAB_REV, LALT(KC_PSCR),       DK_DLR,       KC_7,       KC_8,       KC_9,   __________,
+       __________,    MOUSE_2, _C(KC_ESC),     MOUSE_1,     KC_APP,           TILDE,   _S(KC_4),   _C(KC_5),   _A(KC_6),   __________,
+       __________, __________, __________,STICKY_SHIFT,     KC_DEL,             HAT,       KC_1,       KC_2,      KC_3,    __________,
                                __________,  __________, __________,      __________, __________, __________
         ),
     [BS_LAYER] = ROLLERCOLE_36(
@@ -412,13 +414,7 @@ bool achordion_eager_mod(uint8_t mod) {
 }
 
 const uint16_t PROGMEM combo_wr[] = { KC_W, _W(KC_R), COMBO_END};
-const uint16_t PROGMEM combo_lo[] = { KC_L, _W(KC_O), COMBO_END};
-const uint16_t PROGMEM combo_ou[] = { _W(KC_O), KC_U, COMBO_END};
-const uint16_t PROGMEM combo_lu[] = { KC_L, KC_U, COMBO_END};
 
 combo_t key_combos[] = {
-    COMBO(combo_wr, KC_J),
-    COMBO(combo_lo, DK_AE),
-    COMBO(combo_ou, DK_AA),
-    COMBO(combo_lu, DK_OE)
+    COMBO(combo_wr, KC_J)
 };
