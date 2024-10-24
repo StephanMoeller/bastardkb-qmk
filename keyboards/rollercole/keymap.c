@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [NUMBERS] = ROLLERCOLE_36(
         CLOSE_WIN,    ALT_TAB, __________, ALT_TAB_REV, LALT(KC_PSCR),       DK_DLR,       KC_7,       KC_8,       KC_9,   __________,
-       __________,    MOUSE_2, _C(KC_ESC),     MOUSE_1,     KC_APP,           TILDE,   _S(KC_4),   _C(KC_5),   _A(KC_6),   __________,
+       __________,    MOUSE_2, _C(KC_ESC),     MOUSE_1,     KC_APP,           TILDE,   _S(KC_4),   _C(KC_5),   _A(KC_6),         KC_0,
        __________, __________, __________,STICKY_SHIFT,     KC_DEL,             HAT,       KC_1,       KC_2,      KC_3,    __________,
                                __________,  __________, __________,      __________, __________, __________
         ),
@@ -346,7 +346,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                     if(sticky_shift_on){
                         tap_code(KC_SPACE);
                     }else{
-                        tap_code(KC_0);
+                        // dont tap 0 on thumb anymore - instead this is moved to pinky
                     }
                 }
              }
