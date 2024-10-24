@@ -78,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                __________,  __________, __________,      __________, __________, __________
         ),
     [BS_LAYER] = ROLLERCOLE_36(
-       __________, __________, __________, __________, __________,         __________,      DK_AE,     DK_OE,       DK_AA, __________,
+       __________, __________, __________, __________, __________,         __________, __________, __________,   __________, __________,
        __________, __________, __________, __________, __________,         __________,  _S(KC_BS),  _C(KC_BS),  _A(KC_BS), __________,
        __________, __________, __________, __________, __________,         __________,     KC_DEL,     KC_DEL,     KC_DEL, __________,
                                __________, __________, __________,         __________, __________, __________
@@ -415,6 +415,12 @@ bool achordion_eager_mod(uint8_t mod) {
 
 const uint16_t PROGMEM combo_wr[] = { KC_W, _W(KC_R), COMBO_END};
 
+const uint16_t PROGMEM combo_lo[] = { KC_L,   _W(KC_O), COMBO_END};
+const uint16_t PROGMEM combo_ou[] = { _W(KC_O), KC_U, COMBO_END};
+const uint16_t PROGMEM combo_lu[] = { KC_L, KC_U, COMBO_END};
 combo_t key_combos[] = {
-    COMBO(combo_wr, KC_J)
+    COMBO(combo_wr, KC_J),
+    COMBO(combo_lo, DK_AE),
+    COMBO(combo_ou, DK_AA),
+    COMBO(combo_lu, DK_OE)
 };
