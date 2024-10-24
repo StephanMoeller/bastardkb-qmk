@@ -67,13 +67,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
  [ARROW] = ROLLERCOLE_36(
         DK_EXCLAM,    DK_LABK,  DK_EQUALS,    DK_RABK,    KC_PERC,              DK_SLASH,    KC_HOME,      KC_UP,      KC_END, DK_QSTMRK,
-       RALT(KC_2),      TUB_1,  CTL_PAR_1,  SFT_PAR_2,      TUB_2,                KC_APP,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   __________,
+       RALT(KC_2),      TUB_1,  CTL_PAR_1,  SFT_PAR_2,      TUB_2,               KC_PGUP,    KC_LEFT,    KC_DOWN,    KC_RIGHT,   KC_PGDN,
     RALT(DK_LABK), LSFT(KC_3),   DK_LBRAC,   DK_RBRAC,    DK_AMPR,               DK_PIPE,     KC_TAB,   DK_DOUBLE_QT,   DK_COLON,   DK_PLUS,
                                __________, __________, __________,            __________, __________, __________
     ),
     [NUMBERS] = ROLLERCOLE_36(
         CLOSE_WIN,    ALT_TAB, __________, ALT_TAB_REV, LALT(KC_PSCR),       DK_DLR,       KC_7,       KC_8,       KC_9,   __________,
-          KC_PGUP,    MOUSE_2, _C(KC_ESC),     MOUSE_1, KC_PGDN,           TILDE,   _S(KC_4),   _C(KC_5),   _A(KC_6),   DK_DOT,
+       __________,    MOUSE_2, _C(KC_ESC),     MOUSE_1,     KC_APP,           TILDE,   _S(KC_4),   _C(KC_5),   _A(KC_6),   DK_DOT,
        __________, __________, __________,STICKY_SHIFT,     KC_DEL,             HAT,       KC_1,       KC_2,      KC_3,    DK_MINS,
                                __________,  __________, __________,      __________, __________, __________
         ),
