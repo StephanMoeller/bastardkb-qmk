@@ -73,8 +73,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [NUMBERS] = ROLLERCOLE_36(
         CLOSE_WIN,    ALT_TAB, __________, ALT_TAB_REV, LALT(KC_PSCR),       DK_DLR,       KC_7,       KC_8,       KC_9,   __________,
-       __________,    MOUSE_2, _C(KC_ESC),     MOUSE_1,     KC_APP,           TILDE,   _S(KC_4),   _C(KC_5),   _A(KC_6),   __________,
-       __________, __________, __________,STICKY_SHIFT,     KC_DEL,             HAT,       KC_1,       KC_2,      KC_3,    DK_DOT,
+       __________,    MOUSE_2, _C(KC_ESC),     MOUSE_1,     KC_APP,           TILDE,   _S(KC_4),   _C(KC_5),   _A(KC_6),   DK_DOT,
+       __________, __________, __________,STICKY_SHIFT,     KC_DEL,             HAT,       KC_1,       KC_2,      KC_3,    DK_MINS,
                                __________,  __________, __________,      __________, __________, __________
         ),
     [BS_LAYER] = ROLLERCOLE_36(
